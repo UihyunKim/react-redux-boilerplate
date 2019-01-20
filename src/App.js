@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Posts from "./components/Posts";
 import Postform from "./components/Postform";
 import ToDoList from "./components/ToDoList";
+import Auth from "./components/auth";
 
 class App extends Component {
   render() {
@@ -11,7 +12,8 @@ class App extends Component {
         {/* <Postform />
         <hr />
         <Posts /> */}
-        <ToDoList />
+        {/* <ToDoList /> */}
+        <Auth />
       </div>
     );
   }
