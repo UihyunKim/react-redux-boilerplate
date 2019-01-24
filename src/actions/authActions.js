@@ -1,4 +1,4 @@
-import { fbAuth } from "../config/firebase";
+import { fbAuth, helpersRef } from "../config/firebase";
 import {
   AUTH_WATCH,
   USER_LOGIN,
@@ -8,12 +8,10 @@ import {
 } from "./types";
 
 export const authWatch = () => async dispatch => {
-  console.log("authWatch in authActions");
   fbAuth.onAuthStateChanged(user => {
-    console.log(user);
     dispatch({
       type: AUTH_WATCH,
-      payload: user ? "login" : "logout"
+      payload: user ? user : {}
     });
   });
 };
@@ -23,6 +21,11 @@ export const userLogin = (email, pw) => dispatch => {
   fbAuth
     .signInWithEmailAndPassword(email, pw)
     .then(user => {
+      /**
+       * @todo Need to check authorization
+       */
+      console.log(helpersRef);
+
       return dispatch({
         type: USER_LOGIN_SUCCESS,
         payload: user

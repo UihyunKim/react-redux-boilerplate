@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import produce from "immer";
 
 import { connect } from "react-redux";
-import { authWatch, userLogin, userLogout } from "../../actions/authActions";
+import { authWatch, userLogin, userLogout } from "../actions/authActions";
 
 class Auth extends Component {
   constructor(props) {
@@ -73,11 +73,10 @@ class Auth extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  console.log(auth);
   return auth;
 };
 
-export default connect(
-  mapStateToProps,
-  { authWatch, userLogin, userLogout }
-)(Auth);
+// export default connect(
+//   mapStateToProps,
+//   { authWatch, userLogin, userLogout }
+// )(Auth);

@@ -6,15 +6,11 @@ import {
   USER_LOGOUT
 } from "../actions/types";
 
-const initialState = {
-  login: null
-};
+const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case AUTH_WATCH:
-      console.log("authWatch reducer");
-      console.log(action.payload);
       return action.payload;
     case USER_LOGIN:
       return action.payload;

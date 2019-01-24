@@ -7,6 +7,4 @@ import { FirebaseConfig } from "../config/keys";
 firebase.initializeApp(FirebaseConfig);
 
 export const fbAuth = firebase.auth();
-
-const databaseRef = firebase.database().ref();
-export const todosRef = databaseRef.child("todos");
+export const helpersRef = firebase.database().ref("/helpers");
