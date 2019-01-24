@@ -1,4 +1,4 @@
-import { fbAuth, helpersRef } from "../config/firebase";
+import { fbAuth, database, helpersRef } from "../config/firebase";
 import {
   AUTH_WATCH,
   USER_LOGIN,
@@ -9,10 +9,25 @@ import {
 
 export const authWatch = () => async dispatch => {
   fbAuth.onAuthStateChanged(user => {
-    dispatch({
-      type: AUTH_WATCH,
-      payload: user ? user : {}
-    });
+    if (user) {
+      database.ref(`/helpers/${user.uid}/isHelper`).on(
+        "value",
+        snapshot => {
+          const isHelper = snapshot.val() ? true : false;
+
+          dispatch({
+            type: AUTH_WATCH,
+            payload: user ? { user, isHelper } : {}
+          });
+        },
+        err => console.log(err)
+      );
+    } else {
+      dispatch({
+        type: AUTH_WATCH,
+        payload: {}
+      });
+    }
   });
 };
 
@@ -24,7 +39,6 @@ export const userLogin = (email, pw) => dispatch => {
       /**
        * @todo Need to check authorization
        */
-      console.log(helpersRef);
 
       return dispatch({
         type: USER_LOGIN_SUCCESS,
@@ -42,6 +56,7 @@ export const userLogin = (email, pw) => dispatch => {
 
 export const userLogout = () => dispatch => {
   fbAuth.signOut().then(() => {
+    console.log("user logout");
     return dispatch({
       type: USER_LOGOUT,
       payload: "logout"

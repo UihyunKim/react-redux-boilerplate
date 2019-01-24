@@ -10,7 +10,6 @@ import Login from "./components/Login";
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = { email: "", pw: "" };
   }
 
@@ -19,10 +18,11 @@ class App extends Component {
   }
 
   render() {
-    const login = this.props.uid ? true : false;
+    const login = this.props.user ? true : false;
+    const helper = this.props.isHelper ? this.props.isHelper : false;
     return (
       <div>
-        {login ? (
+        {login && helper && (
           <Router>
             <div className="nav">
               <div>
@@ -36,9 +36,14 @@ class App extends Component {
               <Route path="/feedback" component={Feedback} />
             </div>
           </Router>
-        ) : (
-          <Login />
         )}
+        {login && !helper && (
+          <div>
+            <h1>관리자 권한이 없습니다.</h1>
+            <a onClick={this.props.userLogout}>로그아웃</a>
+          </div>
+        )}
+        {!login && <Login />}
       </div>
     );
   }

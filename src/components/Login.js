@@ -50,10 +50,6 @@ class Login extends Component {
           <input type="submit" value="Submit" />
         </form>
       </div>
-      <hr />
-      <div>
-        <button onClick={this.onLogout}>Logout</button>
-      </div>
     </div>
   );
 }
