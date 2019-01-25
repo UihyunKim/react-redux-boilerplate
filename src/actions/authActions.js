@@ -19,8 +19,8 @@ export const authWatch = () => async dispatch => {
             type: AUTH_WATCH,
             payload: user ? { user, isHelper } : {}
           });
-        },
-        err => console.log(err)
+        }
+        // err => console.log(err)
       );
     } else {
       dispatch({

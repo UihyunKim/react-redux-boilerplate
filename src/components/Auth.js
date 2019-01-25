@@ -9,8 +9,8 @@ class Auth extends Component {
     super(props);
 
     this.state = {
-      email: "",
-      pw: ""
+      mail: "wwdebate.helper@gmail.com",
+      pw: "디베이트헬퍼"
     };
   }
 
