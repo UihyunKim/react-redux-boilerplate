@@ -1,4 +1,4 @@
-import { fbAuth, database, helpersRef } from "../config/firebase";
+import { fbAuth, database } from "../config/firebase";
 import {
   AUTH_WATCH,
   USER_LOGIN,

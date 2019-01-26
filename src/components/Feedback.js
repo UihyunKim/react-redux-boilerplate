@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 
-export default class Feedback extends Component {
+import { connect } from "react-redux";
+import { dbActivityLv4 } from "../actions/dbActions";
+class Feedback extends Component {
   constructor(props) {
     super(props);
 
     this.state = {};
+  }
+
+  componentDidMount() {
+    console.log("feedback render");
+    /** Fetch lv4. from firebase */
+    this.props.dbActivityLv4();
   }
 
   render() {
@@ -15,3 +23,8 @@ export default class Feedback extends Component {
     );
   }
 }
+
+export default connect(
+  null,
+  { dbActivityLv4 }
+)(Feedback);

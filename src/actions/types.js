@@ -11,3 +11,6 @@ export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_FAIL = "USER_LOGIN_FAIL";
 export const USER_LOGOUT = "USER_LOGOUT";
+
+/** FIREBASE DB */
+export const DB_ACTIVITY_LV4 = "DB_ACTIVITY_LV4";
