@@ -2,28 +2,35 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { authWatch, userLogout } from "../actions/authActions";
-
-import Home from "./Home";
-import Feedback from "./Feedback";
+import { dbUsersWatch } from "../actions/dbActions";
 
 class Nav extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
+  componentDidMount() {
+    this.props.dbUsersWatch();
+  }
+
   render() {
     const { user, isHelper, userLogout } = this.props;
     return (
-      <div>
+      <div className="row">
         {user && isHelper && (
-          <Router>
-            <div className="nav">
-              <div>
-                <Link to="/">홈</Link>
-                <Link to="/feedback">피드백</Link>
-                <a onClick={userLogout}>로그아웃</a>
-              </div>
-
-              <Route exact path="/" component={Home} />
-              <Route path="/feedback" component={Feedback} />
-            </div>
-          </Router>
+          <div className="col text-right">
+            <span className="ml-auto">
+              <Link to="/">홈</Link>
+            </span>
+            <span className="ml-3">
+              <Link to="/feedback">피드백</Link>
+            </span>
+            <span className="ml-3">
+              <a onClick={userLogout}>로그아웃</a>
+            </span>
+          </div>
         )}
       </div>
     );
@@ -36,5 +43,5 @@ const mapStateToProps = ({ auth }) => {
 
 export default connect(
   mapStateToProps,
-  { authWatch, userLogout }
+  { authWatch, userLogout, dbUsersWatch }
 )(Nav);

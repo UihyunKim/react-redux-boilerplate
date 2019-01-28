@@ -1,12 +1,13 @@
-import { DB_ACTIVITY_LV4 } from "../actions/types";
+import produce from "immer";
+import { DB_USERS_WATCH } from "../actions/types";
 
 const initialState = {};
 
 export default (state = initialState, action) => {
-  switch (action.type) {
-    case DB_ACTIVITY_LV4:
-      return action.payload;
-    default:
-      return state;
-  }
+  return produce(state, draft => {
+    switch (action.type) {
+      case DB_USERS_WATCH:
+        draft.users = action.users;
+    }
+  });
 };
